@@ -1,0 +1,7 @@
+{
+  "name": "touch-connect",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
