@@ -18,6 +18,5 @@ export class SignupPage implements OnInit {
   }
   signUp(){
     this.name+','+this.email+','+this.password;
-    this.menuCtrl.enable(true);
   }
 }
