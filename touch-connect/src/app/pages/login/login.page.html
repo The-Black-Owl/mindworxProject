@@ -14,8 +14,10 @@
           <ion-label position="floating">Password</ion-label>
           <ion-input  type="password" required></ion-input>
         </ion-item>
-        <ion-button color="dark" expand="block" fill="clear" [routerLink]="['/forgot-pass']" >Forgot email/password</ion-button> 
-        <ion-button  type="submit" expand="block" color="warning" (click)="logIn()" [routerLink]="['/folder/inbox']">
+        <!--this button is for the forgot password page-->
+        <ion-button color="dark" expand="block" fill="clear" [routerLink]="['']" >Forgot email/password</ion-button>
+        <!--this is meant to be clicked then takes you to the applications features>> this is the login button-->
+        <ion-button  type="submit" expand="block" color="warning" (click)="logIn()" [routerLink]="['']">
           Login
         </ion-button>
         <ion-button color="warning" expand="block"  [routerLink]="['/signup']">signup</ion-button>

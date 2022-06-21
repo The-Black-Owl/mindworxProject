@@ -10,12 +10,13 @@ export class SignupPage implements OnInit {
   email: string="";
   password:string="";
 
-  constructor(public menuCtrl: MenuController) { }
+  constructor(private menuCtrl: MenuController) { }
   ngOnInit() {
   }
+  /*This is the feature to disable menu during sign in page
   ionViewWillEnter() {
       this.menuCtrl.enable(false);
-  }
+  }*/
   signUp(){
     this.name+','+this.email+','+this.password;
   }

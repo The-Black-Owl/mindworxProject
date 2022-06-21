@@ -6,11 +6,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Chat', url: '/folder/Inbox', icon: 'chatbubble' },
-    { title: 'Community chat', url: '/folder/Favorites', icon: 'chatbubbles' },
-    { title: 'News', url: '/folder/Archived', icon: 'newspaper' },
-    { title: 'Weather', url: '/folder/Archived', icon: 'thunderstorm' },
-    { title: 'Mindworx Learn', url: '/folder/Archived', icon: 'school' },
     { title: 'Logout', url: 'login', icon: 'exit' }
   ];
   constructor() {}
