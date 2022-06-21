@@ -17,10 +17,10 @@
         <!--this button is for the forgot password page-->
         <ion-button color="dark" expand="block" fill="clear" [routerLink]="['']" >Forgot email/password</ion-button>
         <!--this is meant to be clicked then takes you to the applications features>> this is the login button-->
-        <ion-button  type="submit" expand="block" color="warning" (click)="logIn()" [routerLink]="['/home']">
+        <ion-button  type="submit" expand="block" color="warning" (click)="logIn()">
           Login
         </ion-button>
-        <ion-button color="warning" expand="block"  [routerLink]="['/signup']">signup</ion-button>
+        <ion-button color="warning" expand="block" (click)="register()" >signup</ion-button>
       </ion-card-content>
     </ion-card>
   </div>   

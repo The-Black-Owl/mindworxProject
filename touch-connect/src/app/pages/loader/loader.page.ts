@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 
 @Component({
@@ -8,9 +9,12 @@ import { LoadingController } from '@ionic/angular';
 })
 export class LoaderPage implements OnInit {
 
-  constructor(public loadingController: LoadingController) { }
+  constructor(public loadingController: LoadingController, private router: Router) { }
 
   ngOnInit() {
+    setTimeout(()=>{
+      this.router.navigate(['login']);
+    },1000) 
   }
 
 }
