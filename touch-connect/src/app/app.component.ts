@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public appPages = [
+    { title: 'Home', url: 'home', icon: 'home' },
+    { title: 'Mindworx News', url: 'news', icon: 'newspaper' },
     { title: 'Logout', url: 'login', icon: 'exit' }
   ];
   constructor() {}
