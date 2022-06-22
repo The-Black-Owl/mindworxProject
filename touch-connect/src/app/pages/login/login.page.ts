@@ -25,7 +25,7 @@ export class LoginPage implements OnInit {
   logIn(){
     this.emali+','+this.password;//outputs  a comma separated string of email and password
     this.menuCtrl.enable(true);//enables the application menu
-    this.router.navigate(['home']);
+    this.router.navigate(['feed']);
   }
   register(){
     this.router.navigate(['signup']);
