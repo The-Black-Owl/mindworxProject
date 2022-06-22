@@ -1,7 +1,10 @@
 ion-slides{
+    --backgound:blue;
+    --color:blue;
     height: 100%;
 }
 ion-slide{
+    --background:orange;
     display:flex;
     
     flex-direction: column;
