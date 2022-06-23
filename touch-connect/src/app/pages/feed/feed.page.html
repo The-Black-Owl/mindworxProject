@@ -12,14 +12,20 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding" color="warning">
   <!--in the content we want to have a slode show that shows all the pages that are contained in the app;
   we can display slides{chat, profile, news and academy};
 these slides must be clickable then route to the pages of interest-->
-  <ion-slides pager="true">
+  <ion-slides #slides
+    (ionSlideDidChange)="runCheckForSlideIndex()"
+    (ionSlideReachStart)="runSlideDidReachStart()"
+    (ionSlideReachEnd)="runSlideDidReachEnd()"
+    (ionSlideDrag)="runSlideDrag($event)"
+    pager="true"
+    [options]="slideConfig">
     <ion-slide>
       <h3>logo slide</h3>
-      <img src="C:\Users\Dell-User\Desktop\pokemon.jpg"/>
+      
       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
         Officiis inventore unde ducimus numquam delectus rerum aspernatur minima debitis animi, 
         et harum soluta libero. 
