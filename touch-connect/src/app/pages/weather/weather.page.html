@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>weather</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        {{cityName}}
+      </ion-item>
+      <ion-item>
+        {{todayDate| date:"EEE dd MMM"}}
+      </ion-item>
+      <ion-item>
+        {{weatherTemp}}
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

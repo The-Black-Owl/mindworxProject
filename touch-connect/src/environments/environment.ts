@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  WeathURL:'https://api.openweathermap.org/data/2.5/',
+  WeathAPI:'03351a95c78af48572f62f0a34b00e3b',
+  //need a geolocator/ geoco-ord api
+  GeoURL:'http://api.openweathermap.org/geo/1.0/'
 };
 
 /*
