@@ -1,21 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { AppState } from 'src/store/AppState';
-import { LoadingState } from 'src/store/loading/LoadingState';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-loading',
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss'],
+  
 })
 export class LoadingComponent implements OnInit {
-  loadingState$: Observable<LoadingState>;
 
-  constructor(private store:Store<AppState>) { }
+constructor(public loadingCtrl:LoadingController){}
+
+  async presentLoading(){
+    const loading= await this.loadingCtrl.create({
+      cssClass:'backdrop',
+      spinner:'crescent',
+      duration:5000
+    });
+    await loading.present();
+
+    const {role,data}=await loading.onDidDismiss();
+    console.log('loading dismissed',role);
+  }
+
 
   ngOnInit() {
-    this.loadingState$ = this.store.select('loading')
+    this.presentLoading();
   }
 
 }
