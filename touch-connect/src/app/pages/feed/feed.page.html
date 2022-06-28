@@ -26,29 +26,22 @@ these slides must be clickable then route to the pages of interest-->
     <ion-slide>
       <img src="/assets/transparentLogo.png" />
     </ion-slide>
-    <ion-slide>
+    <ion-slide (click)="newsPage()">
       <h3>news slide</h3>
       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
         Officiis inventore unde ducimus numquam delectus rerum aspernatur minima debitis animi, 
         et harum soluta libero. 
         Excepturi ipsum quidem consequatur ducimus aut. Consectetur!</p>
-        <ion-button fill="clear">
-          <ion-icon name='newspaper' slot="icon-only"></ion-icon>
-        </ion-button>
     </ion-slide>
     <ion-slide>
-      <h3>Academy slide</h3>
-      <img src="/assets/acadyemy1.jpg" />
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis inventore unde ducimus numquam delectus rerum aspernatur minima debitis animi, 
-        et harum soluta libero. 
-        Excepturi ipsum quidem consequatur ducimus aut. Consectetur!</p>
+      <h3>Mindworx Academy</h3>
+      <img src="/assets/codingdoodle1.png" alt="codingDoodle2.png">
+      <p>Check out, our programming and coding courses on the mindworx academy... </p>
     </ion-slide>
-    <ion-slide>
-      <h3>chat slide</h3>
-
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis inventore unde ducimus numquam delectus rerum aspernatur minima debitis animi, 
-        et harum soluta libero. 
-        Excepturi ipsum quidem consequatur ducimus aut. Consectetur!</p>
+    <ion-slide (click)="chatPage()">
+      <h3>Chat</h3>
+      <img src="/assets/chatDoodle.png" />
+      <p>Connect and chat with friends and academics...</p>
     </ion-slide>
     <ion-slide>
       <h3>about slide</h3>
@@ -57,8 +50,11 @@ these slides must be clickable then route to the pages of interest-->
         et harum soluta libero. 
         Excepturi ipsum quidem consequatur ducimus aut. Consectetur!</p>
     </ion-slide>
-    <ion-slide>
-      <img src="/assets/acadyemy1.jpg" />
+    <ion-slide (click)="weatherPage()">
+      <h3>Weather Forecast</h3>
+      <img src="/assets/doogle2Transparent.png" />
+      <p>It could be cold...it could be raining... it could be sunny... 
+        click the button below to find the weather forecast of your location of interest...</p>
     </ion-slide>
   </ion-slides>
 </ion-content>

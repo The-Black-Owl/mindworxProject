@@ -1,21 +1,51 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>weather</ion-title>
+    <ion-menu-button slot="start"></ion-menu-button>
+    <ion-title>Weather</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="warning">
+  <ion-searchbar [(ngModel)]="cityName" (ngModelChange)="loadData()" animated placeholder="search for city"></ion-searchbar>
+  <div *ngIf="!loadingInfo">
   <ion-card>
     <ion-card-content>
-      <ion-item>
-        {{cityName}}
+      <ion-item lines="none">
+        <p  style="font-weight: 500;">The forecast for today:</p>
+        <ion-label slot='end'  style="font-weight: 500;">{{todayDate| date:"EEE dd MMM"}}</ion-label>
       </ion-item>
-      <ion-item>
-        {{todayDate| date:"EEE dd MMM"}}
+      <ion-item lines="none">
+        <span id="temp">{{weatherTemp}}</span>
+        <span style="font-size:2.5rem; font-weight: 10; color: #ffc409;"><sup>o</sup>C</span>
+        <img slot='end' width="125px" height="125px" [src]=weatherIcon>
       </ion-item>
-      <ion-item>
-        {{weatherTemp}}
+      <ion-item lines="none">
+        <ion-icon style="color:#ffc409" name="location" slot="start"></ion-icon>
+        <span style="font-weight: 100;">{{cityName}}</span>
       </ion-item>
     </ion-card-content>
   </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-item lines="none">
+        <span>Minimum Temperature: </span>
+        <span slot="end">{{minTemp}}</span>
+      </ion-item>
+      <ion-item lines="none">
+        <span>Maximum Temperature: </span>
+        <span slot="end">{{maxTemp}}</span>
+      </ion-item>
+      <ion-item lines="none">
+        <span>Humidity: </span>
+        <span slot="end">{{humidity}}%</span>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</div>
+<div *ngIf="loadingInfo">
+  <body>
+    <span id="NoWeatherData">No data...</span>
+  </body>
+</div>
 </ion-content>

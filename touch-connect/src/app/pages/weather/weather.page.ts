@@ -14,30 +14,45 @@ const GeoURL=environment.GeoURL;
 export class WeatherPage implements OnInit {
   longitud:any
   latitude:any
-  weatherTemp:any
-  cityName:any
+  weatherTemp:any //temp of the day
+  minTemp:any
+  maxTemp:any
+  humidity:any
+  weatherIcontype:any
+  weatherIcon:any
+  cityName="" // city name
+  name=""
   todayDate= new Date()//gets todays date
+
+  loadingInfo=true
   constructor(public httpClient:HttpClient) { 
-    this.loadData();
+    //this.loadData();
   }
 
   ngOnInit() {
   }
   loadData(){
    //gets the logitude and latitude of the location of interest
-    this.httpClient.get(`${GeoURL}/direct?q=${'durban'}&appid=${WeathAPI}`).subscribe(results=>{
+    this.httpClient.get(`${GeoURL}/direct?q=${this.cityName}&appid=${WeathAPI}`).subscribe(results=>{
       console.log(results)
       this.latitude=results[0]['lat']
       this.longitud=results[0]['lon']
 
-      this.cityName=results[0]['name']
-      console.log(this.cityName);
-    //gets the weather of that location
-    this.httpClient.get(`${WeathURL}/weather?lat=${this.latitude}&lon=${this.longitud}&appid=${WeathAPI}`).subscribe(results=>{
+      this.name=results[0]['name']
+      console.log(this.name);
+    //gets the weather of that location, converts the weather into celcius
+    this.httpClient.get(`${WeathURL}/weather?lat=${this.latitude}&lon=${this.longitud}&appid=${WeathAPI}&units=metric`).subscribe(results=>{
       console.log(results)
-      //the main is an array and unde rthe main array we have the temp
-      this.weatherTemp=results['main']['temp']
-      console.log(this.weatherTemp) });
+      //the temperatures havce been rounded up
+      this.weatherTemp=Math.round(results['main']['temp'])
+      this.minTemp=Math.round(results['main']['temp_min'])
+      this.maxTemp=Math.round(results['main']['temp_max'])
+      this.humidity=results['main']['humidity']
+      //allows us to have the icons of the weather
+      this.weatherIcontype=results['weather'][0]['icon']
+      this.weatherIcon=`http://openweathermap.org/img/wn/${this.weatherIcontype}@2x.png`
+      this.loadingInfo=false
+      console.log(this.weatherTemp,this.minTemp,this.maxTemp,this.humidity,this.weatherIcon) });
     })
   }
 }

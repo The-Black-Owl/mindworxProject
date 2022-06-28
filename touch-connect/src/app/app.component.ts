@@ -10,6 +10,7 @@ export class AppComponent {
     { title: 'Profile', url: 'profile', icon: 'person' },
     { title: 'chat', url: 'chat', icon: 'chatbubbles' },
     { title: 'Mindworx News', url: 'news', icon: 'newspaper' },
+    { title: 'Weather', url: 'weather', icon: 'cloud' },
     { title: 'Mindworx Academy', url: 'news', icon: 'school' },
     { title: 'Logout', url: 'login', icon: 'exit' }
   ];

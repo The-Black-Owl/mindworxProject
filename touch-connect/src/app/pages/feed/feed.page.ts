@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -142,9 +143,18 @@ export class FeedPage implements OnInit {
   public runSlideDrag(event: any): void {
     console.log('current event'+event.type);
   }
-  constructor() { }
+  constructor( private router: Router) { }
 
   ngOnInit() {
   }
 
+  weatherPage(){
+    this.router.navigate(['weather']);
+  }
+  newsPage(){
+    this.router.navigate(['news']);
+  }
+  chatPage(){
+    this.router.navigate(['chat']);
+  }
 }
