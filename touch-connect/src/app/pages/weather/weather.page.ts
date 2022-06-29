@@ -21,15 +21,16 @@ export class WeatherPage implements OnInit {
   weatherIcontype:any
   weatherIcon:any
   cityName="" // city name
-  name=""
+  
   todayDate= new Date()//gets todays date
 
   loadingInfo=true
   constructor(public httpClient:HttpClient) { 
-    //this.loadData();
+    
   }
 
   ngOnInit() {
+    this.loadData();
   }
   loadData(){
    //gets the logitude and latitude of the location of interest
@@ -38,8 +39,7 @@ export class WeatherPage implements OnInit {
       this.latitude=results[0]['lat']
       this.longitud=results[0]['lon']
 
-      this.name=results[0]['name']
-      console.log(this.name);
+      
     //gets the weather of that location, converts the weather into celcius
     this.httpClient.get(`${WeathURL}/weather?lat=${this.latitude}&lon=${this.longitud}&appid=${WeathAPI}&units=metric`).subscribe(results=>{
       console.log(results)
