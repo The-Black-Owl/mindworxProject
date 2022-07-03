@@ -6,8 +6,19 @@ export const environment = {
   production: false,
   WeathURL:'https://api.openweathermap.org/data/2.5/',
   WeathAPI:'03351a95c78af48572f62f0a34b00e3b',
-  //need a geolocator/ geoco-ord api
-  GeoURL:'http://api.openweathermap.org/geo/1.0/'
+  GeoURL:'http://api.openweathermap.org/geo/1.0/',
+
+//Access to the firebase  database
+  firebase:{
+    apiKey: "AIzaSyBPv_IyBZn3SsGHleZXXYEnyn-IgdNKnf0",
+    authDomain: "mindworx-touch-connect.firebaseapp.com",
+    databaseURL: "https://mindworx-touch-connect-default-rtdb.firebaseio.com",
+    projectId: "mindworx-touch-connect",
+    storageBucket: "mindworx-touch-connect.appspot.com",
+    messagingSenderId: "847131270722",
+    appId: "1:847131270722:web:46028aecafb0a1513957db",
+    measurementId: "G-Z7B23KXK5E"
+  }
 };
 
 /*

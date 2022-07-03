@@ -1,5 +1,22 @@
 {
   "dependencies": {
     "swiper": "^8.2.4"
-  }
+  },
+  "name": "mindworxproject",
+  "description": "This repository contains the mindworx touch connect application. Developed using ionic\r so far the app contains\r >>loader{being styled}\r >>login page-- made html changes\r >>signup page--made html changes\r >>forgot password page-- no change---removed",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/The-Black-Owl/mindworxProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/The-Black-Owl/mindworxProject/issues"
+  },
+  "homepage": "https://github.com/The-Black-Owl/mindworxProject#readme"
 }
