@@ -11,10 +11,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoadingComponent } from './components/loading/loading.component';
 import { environment } from 'src/environments/environment';
 
+import { AngularFireModule } from 'angularfire2';
 
 @NgModule({
   declarations: [AppComponent, LoadingComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,],
+  imports: [BrowserModule,
+    IonicModule.forRoot(),
+     AppRoutingModule,
+     HttpClientModule,
+     AngularFireModule.initializeApp(environment.firebase),],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
