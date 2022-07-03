@@ -16,10 +16,11 @@ import { AngularFireModule } from 'angularfire2';
 @NgModule({
   declarations: [AppComponent, LoadingComponent],
   imports: [BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase),
     IonicModule.forRoot(),
      AppRoutingModule,
      HttpClientModule,
-     AngularFireModule.initializeApp(environment.firebase),],
+    ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
