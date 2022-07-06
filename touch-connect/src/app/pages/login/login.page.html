@@ -9,17 +9,17 @@
       <ion-card-content>
         <ion-item >
           <ion-label position="floating">Email</ion-label>
-          <ion-input  type="email" formControlName="email" required></ion-input>
+          <ion-input  type="email" formControlName="email" required [(ngModel)]="email"></ion-input>
         </ion-item>
 
         <ion-item >
           <ion-label position="floating">Password</ion-label>
-          <ion-input  type="password" formControlName="password" required></ion-input>
+          <ion-input  type="password" formControlName="password" required [(ngModel)]="password"></ion-input>
         </ion-item>
 
         <!--this button is for the forgot password page-->
         <ion-button color="dark" expand="block" fill="clear" [disabled]="!form.get('email').valid"
-        [routerLink]="['']" >Forgot email/password</ion-button>
+        (click)="forgotPass()">Forgot email/password</ion-button>
 
         <!--this is meant to be clicked then takes you to the applications features>> this is the login button-->
         <ion-button  type="submit" expand="block" color="warning" [disabled]="!form.valid" (click)="logIn()">
@@ -30,5 +30,5 @@
       </ion-card-content>
     </ion-card>
   </form>
-  </div>   
+  </div>
 </ion-content>
