@@ -1,10 +1,25 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-menu-button slot="start"></ion-menu-button>
-    <ion-title>profile</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content>
-
+  <div class="form-container ion-text-center" *ngIf="user$|async as user" >
+    <div class="profile-image">
+      <h1>User Profile</h1>
+      <img width="120" height="120" [src]="user.photoURL ??'/assets/profileICON.png'"/>
+        <ion-button  fill="clear" id="inputField">
+          <ion-icon name="add-circle" slot="icon-only" >edit</ion-icon>
+        </ion-button>
+        <ion-input  #inputField type="file" accept="image/*" (change)="uploadFile($event,user)"></ion-input>
+    </div>
+    <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" >
+      <ion-item >
+        <ion-input  type="text" formControlName="first_name" placeholder="first name"></ion-input>
+      </ion-item>
+      <ion-item >
+        <ion-input  type="text" formControlName="last_name" placeholder="last name" ></ion-input>
+      </ion-item>
+      <ion-item >
+          <ion-input  type="email" formControlName="email" placeholder="email"></ion-input>
+      </ion-item>
+      <ion-button type='submit'>save</ion-button>
+    </form>
+  </div>
 </ion-content>

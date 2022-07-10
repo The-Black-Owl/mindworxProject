@@ -1,10 +1,16 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { UsersService } from 'src/app/services/users.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  user$=this.authService.currentUser$;
+
   public appPages = [
     { title: 'Home', url: 'feed', icon: 'home' },
     { title: 'Profile', url: 'profile', icon: 'person' },
@@ -14,5 +20,10 @@ export class AppComponent {
     { title: 'Mindworx Academy', url: 'news', icon: 'school' },
     { title: 'Logout', url: 'login', icon: 'exit' }
   ];
-  constructor() {}
+
+  constructor(
+    private authService:AuthService,
+    private usresService:UsersService,
+    private router:Router
+  ) {}
 }
