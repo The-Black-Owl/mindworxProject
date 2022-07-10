@@ -8,6 +8,7 @@ import { UsersService } from 'src/app/services/users.service';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
+
 export class AppComponent {
   user$=this.authService.currentUser$;
 
@@ -26,4 +27,5 @@ export class AppComponent {
     private usresService:UsersService,
     private router:Router
   ) {}
+
 }

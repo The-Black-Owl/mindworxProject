@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl,FormGroup} from '@angular/forms';
 
+import {untilDestroyed, UntilDestroy} from '@ngneat/until-destroy';
+
 import {concatMap, switchMap,tap} from 'rxjs/operators';
 import { ProfileUser } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { ImageUploadService } from 'src/app/services/image-upload.service';
 import { UsersService } from 'src/app/services/users.service';
 
+@UntilDestroy()
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -29,7 +32,7 @@ export class ProfilePage implements OnInit {
     private usersService:UsersService) { }
 
   ngOnInit(): void {
-    this.usersService.currentUserProfile$.subscribe((user)=>{
+    this.usersService.currentUserProfile$.pipe(untilDestroyed(this)).subscribe((user)=>{
       this.profileForm.patchValue({...user});
     });
   }

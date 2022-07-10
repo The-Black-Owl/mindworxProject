@@ -13,7 +13,6 @@ import {Auth,
 import{from, Observable,of} from 'rxjs';
 import{switchMap,first,map, concatMap} from 'rxjs/operators';
 
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +21,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   currentUser$ = authState(this.auth)
 
-  constructor(private auth:Auth,private router: Router) {}
+  constructor(private auth:Auth) {}
 
   //login method
   login(email: string, password: string):Observable<any>{
@@ -44,6 +43,10 @@ export class AuthService {
         return updateProfile(user,profileData);
       })
     )
+  }
+
+  logout(): Observable<any> {
+    return from(this.auth.signOut());
   }
 
   //forgot password

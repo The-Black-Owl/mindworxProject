@@ -4,7 +4,7 @@ import {getDownloadURL,
       Storage,
       uploadBytes} from '@angular/fire/storage';
 import {from,Observable} from 'rxjs'
-import {switchMap,map,finalize} from 'rxjs/operators';
+import {switchMap} from 'rxjs/operators';
 
 
 @Injectable({

@@ -1,3 +1,10 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button slot="start"></ion-menu-button>
+    <ion-title>User Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 
 <ion-content>
   <div class="form-container ion-text-center" *ngIf="user$|async as user" >
@@ -10,6 +17,9 @@
         <ion-input  #inputField type="file" accept="image/*" (change)="uploadFile($event,user)"></ion-input>
     </div>
     <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" >
+      <ion-item >
+        <ion-input  type="text" formControlName="display_name" placeholder="Display Name"></ion-input>
+      </ion-item>
       <ion-item >
         <ion-input  type="text" formControlName="first_name" placeholder="first name"></ion-input>
       </ion-item>

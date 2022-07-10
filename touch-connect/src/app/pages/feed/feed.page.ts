@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-feed',
@@ -52,10 +53,10 @@ export class FeedPage implements OnInit {
     on: {
       beforeInit() {
         const swiper = this;
-  
+
         swiper.classNames.push(`${swiper.params.containerModifierClass}coverflow`);
         swiper.classNames.push(`${swiper.params.containerModifierClass}3d`);
-  
+
         swiper.params.watchSlidesProgress = true;
         swiper.originalParams.watchSlidesProgress = true;
       },
@@ -76,24 +77,24 @@ export class FeedPage implements OnInit {
           const slideSize = slidesSizesGrid[i];
           const slideOffset = $slideEl[0].swiperSlideOffset;
           const offsetMultiplier = ((center - slideOffset - (slideSize / 2)) / slideSize) * params.modifier;
-  
+
            let rotateY = isHorizontal ? rotate * offsetMultiplier : 0;
           let rotateX = isHorizontal ? 0 : rotate * offsetMultiplier;
           // var rotateZ = 0
           let translateZ = -translate * Math.abs(offsetMultiplier);
-  
+
            let translateY = isHorizontal ? 0 : params.stretch * (offsetMultiplier);
           let translateX = isHorizontal ? params.stretch * (offsetMultiplier) : 0;
-  
+
            // Fix for ultra small values
           if (Math.abs(translateX) < 0.001) translateX = 0;
           if (Math.abs(translateY) < 0.001) translateY = 0;
           if (Math.abs(translateZ) < 0.001) translateZ = 0;
           if (Math.abs(rotateY) < 0.001) rotateY = 0;
           if (Math.abs(rotateX) < 0.001) rotateX = 0;
-  
+
            const slideTransform = `translate3d(${translateX}px,${translateY}px,${translateZ}px)  rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-  
+
            $slideEl.transform(slideTransform);
           $slideEl[0].style.zIndex = -Math.abs(Math.round(offsetMultiplier)) + 1;
           if (params.slideShadows) {
@@ -112,7 +113,7 @@ export class FeedPage implements OnInit {
             if ($shadowAfterEl.length) $shadowAfterEl[0].style.opacity = (-offsetMultiplier) > 0 ? -offsetMultiplier : 0;
           }
         }
-  
+
          // Set correct perspective for IE10
         if (swiper.support.pointerEvents || swiper.support.prefixedPointerEvents) {
           const ws = $wrapperEl[0].style;
@@ -128,7 +129,7 @@ export class FeedPage implements OnInit {
       }
     }
   };
-  
+
   public runSlideDidReachStart(): void {
     console.log('The first slide was reached');
   }
@@ -143,7 +144,7 @@ export class FeedPage implements OnInit {
   public runSlideDrag(event: any): void {
     console.log('current event'+event.type);
   }
-  constructor( private router: Router) { }
+  constructor( private router: Router,private authService:AuthService,) { }
 
   ngOnInit() {
   }
@@ -156,5 +157,10 @@ export class FeedPage implements OnInit {
   }
   chatPage(){
     this.router.navigate(['chat']);
+  }
+  logout() {
+    this.authService.logout().subscribe(() => {
+      this.router.navigate(['login']);
+    });
   }
 }
