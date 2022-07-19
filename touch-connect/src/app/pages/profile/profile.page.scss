@@ -7,13 +7,7 @@
 .profile-image{
   position: relative;
 }
-.profile-image>ion-button{
-  position: absolute;
-  bottom: 0px;
-  right: 40%;
-}
-ion-input[type='file'] {
-  opacity:0;
+.profile-image>ion-fab{
   position: absolute;
   bottom: 0px;
   right: 40%;

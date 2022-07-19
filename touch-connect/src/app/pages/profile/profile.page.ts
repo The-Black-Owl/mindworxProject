@@ -20,7 +20,7 @@ export class ProfilePage implements OnInit {
 
   profileForm= new FormGroup({
     uid: new FormControl(''),
-    display_name: new FormControl(''),
+    displayName: new FormControl(''),
     first_name: new FormControl(''),
     last_name: new FormControl(''),
     email: new FormControl(''),

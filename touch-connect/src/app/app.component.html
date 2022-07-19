@@ -4,12 +4,9 @@
       <ion-content *ngIf="user$|async as user">
         <ion-list id="Menu-list">
           <ion-list-header>TOUCH-CONNECT</ion-list-header>
-          <img
-        width="50"
-        height="50"
-        class="profile-image-toolbar"
-        [src]="user.photoURL ?? '/assets/profileICON.png'"/>
-          <ion-note>{{ user.displayName }}</ion-note>
+          <img width="50" height="50" class="ion-image-toolbar" [src]="user.photoURL ?? '/assets/profileICON.png'"/>
+          <br>
+          {{ user.email}}
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">

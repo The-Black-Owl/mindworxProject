@@ -1,8 +1,13 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import {IonContent} from '@ionic/angular';
-import {Observable} from 'rxjs';
+import {Observable, of,combineLatest} from 'rxjs';
+import {switchMap,startWith,tap,map} from 'rxjs/operators';
+import {FormControl } from '@angular/forms';
+import { UsersService } from 'src/app/services/users.service';
+import { ProfileUser } from 'src/app/models/user';
 import { ChatserviceService } from 'src/app/services/chatservice.service';
-import {Router} from '@angular/router';
+
+
 
 @Component({
   selector: 'app-chat',
@@ -12,19 +17,22 @@ import {Router} from '@angular/router';
 export class ChatPage implements OnInit {
   @ViewChild(IonContent) content:IonContent;
 
-  messages: Observable<any>;
-  newMsg='';
+  user$=this.usersService.currentUserProfile$;
+  searchControl=new FormControl('');
 
-  constructor(private chatService:ChatserviceService, private router:Router) { }
+  users$=combineLatest([this.usersService.allUsers$,this.user$,this.searchControl.valueChanges.pipe(
+    startWith(''))]).pipe(
+      map(([users,user,searchString])=>users.filter(u=>u.displayName?.toLowerCase().includes(searchString.toLowerCase()
+      )&& u.uid !== user?.uid))
+    );
+
+  constructor(private usersService:UsersService,
+    private chatService:ChatserviceService) { }
 
   ngOnInit() {
-    this.chatService.getChatMessages();
   }
 
-  sendMessage(){
-    this.chatService.addChatMessage(this.newMsg).then(()=>{
-      this.newMsg='';
-      this.content.scrollToBottom();
-    })
+  createChat(otherUser:ProfileUser){
+    this.chatService.createChat(otherUser).subscribe();
   }
 }

@@ -2,9 +2,6 @@
   <ion-toolbar>
     <ion-menu-button slot="start"></ion-menu-button>
     <ion-title>chat</ion-title>
-    <!--give this button a click even that will make the user log out of chat,
-    this means if we click on the menu we are still in the chat page until we log out(run chat in the background),
-  the log out click event should take the user to home page-->
     <ion-buttons slot="end">
       <ion-button fill="clear">
         <ion-icon name="log-out" slot="icon-only"></ion-icon>
@@ -13,33 +10,24 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-grid>
-    <ion-row *ngFor="let message of messages |async">
-      <ion-col size="9" class="message"
-        [offset]="message.myMsg ? 3:0"
-        [ngClass]="{'my-message':message.myMsg,'other-message':!message.myMsg}">
-        <b>{{message.msg}}</b><br>
-        <span>{{message.msg}}</span>
-        <div class="time ion-text-right"><br>{{message.createdAt?.toMillis()|date:'short'}}</div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-content>
+<ion-content >
+  <div class="container">
+    <div class="chat-list">
+      <div class="search-input">
+        <form>
+        <ng-select
+        placeholder="search for..."
+        [searchable]="true"
+        [formControl]="searchControl">
+          <ng-option
+          *ngFor="let user of users$ |async"
+          (click)="createChat(user)"
+          [value]="''">{{user?.displayName}}</ng-option>
+        </ng-select>
 
-<ion-footer>
-  <ion-toolbar color="light">
-    <ion-row class="ion-align-items-center">
-      <ion-col size="10">
-        <ion-textarea autoGrow="true" rows="1" maxlength="500" [(ngModel)]="newMsg">
-        </ion-textarea>
-      </ion-col>
-      <ion-col size="2">
-        <ion-button expand="block" fill="clear" color="primary" [disabled]="newMsg===''"
-        class="msg-btn" (click)="sendMessage()">
-          <ion-icon name="send" slot="icon-only"></ion-icon>
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-toolbar>
-</ion-footer>
+        </form>
+      </div>
+    </div>
+    <div class="messages"></div>
+  </div>
+</ion-content>

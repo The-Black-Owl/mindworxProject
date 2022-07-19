@@ -19,7 +19,6 @@ export class AppComponent {
     { title: 'Mindworx News', url: 'news', icon: 'newspaper' },
     { title: 'Weather', url: 'weather', icon: 'cloud' },
     { title: 'Mindworx Academy', url: 'news', icon: 'school' },
-    { title: 'Logout', url: 'login', icon: 'exit' }
   ];
 
   constructor(

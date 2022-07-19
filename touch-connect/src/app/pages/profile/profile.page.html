@@ -9,16 +9,17 @@
 <ion-content>
   <div class="form-container ion-text-center" *ngIf="user$|async as user" >
     <div class="profile-image">
-      <h1>User Profile</h1>
       <img width="120" height="120" [src]="user.photoURL ??'/assets/profileICON.png'"/>
-        <ion-button  fill="clear" id="inputField">
-          <ion-icon name="add-circle" slot="icon-only" >edit</ion-icon>
-        </ion-button>
-        <ion-input  #inputField type="file" accept="image/*" (change)="uploadFile($event,user)"></ion-input>
+        <ion-fab>
+          <ion-fab-button (click)="inputField.click()" size="small" fill="clear" padding>
+            <ion-icon name="add-circle" size="large"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
     </div>
+    <input  #inputField type="file" hidden (change)="uploadFile($event,user)">
     <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" >
       <ion-item >
-        <ion-input  type="text" formControlName="display_name" placeholder="Display Name"></ion-input>
+        <ion-input  type="text" formControlName="displayName" placeholder="Display Name"></ion-input>
       </ion-item>
       <ion-item >
         <ion-input  type="text" formControlName="first_name" placeholder="first name"></ion-input>

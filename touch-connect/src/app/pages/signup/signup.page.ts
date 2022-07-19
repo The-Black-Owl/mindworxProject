@@ -49,7 +49,6 @@ export class SignupPage implements OnInit {
   constructor( private authService:AuthService,
     private router: Router,
     private loadingController: LoadingController,
-    private alertController: AlertController,
     private usersService: UsersService,) { }
 
   ngOnInit() {}

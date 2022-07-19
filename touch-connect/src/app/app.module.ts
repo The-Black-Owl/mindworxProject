@@ -10,17 +10,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingComponent } from './components/loading/loading.component';
 
-//firbase related modules
-import {AngularFireModule} from '@angular/fire/compat';
-import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
-import {AngularFireStorageModule} from '@angular/fire/compat/storage';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import {provideFirestore,getFirestore}from '@angular/fire/firestore';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import {getStorage,provideStorage} from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
+import {AutoCompleteModule} from 'ionic4-auto-complete';
 
 @NgModule({
   declarations: [AppComponent, LoadingComponent],
@@ -31,7 +26,8 @@ import { environment } from 'src/environments/environment';
      provideFirebaseApp(() => initializeApp(environment.firebase)),
      provideAuth(() => getAuth()),
      provideFirestore(()=>getFirestore()),
-     provideStorage(()=>getStorage())
+     provideStorage(()=>getStorage()),
+     AutoCompleteModule,
     ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
