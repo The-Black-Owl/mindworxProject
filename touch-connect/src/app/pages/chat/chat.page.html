@@ -1,33 +1,62 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-menu-button slot="start"></ion-menu-button>
-    <ion-title>chat</ion-title>
-    <ion-buttons slot="end">
-      <ion-button fill="clear">
-        <ion-icon name="log-out" slot="icon-only"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content >
   <div class="container">
-    <div class="chat-list">
-      <div class="search-input">
-        <form>
-        <ng-select
-        placeholder="search for..."
-        [searchable]="true"
-        [formControl]="searchControl">
-          <ng-option
-          *ngFor="let user of users$ |async"
-          (click)="createChat(user)"
-          [value]="''">{{user?.displayName}}</ng-option>
-        </ng-select>
+    <div class="search-input" [hidden]="showContacts">
+      <form>
+        <ion-toolbar>
+          <ion-menu-button slot="start"></ion-menu-button>
+          <ion-searchbar
+          placeholder="Search Contacts"
+          [formControl]="searchControl"
+          showCancelButton="focus"
+          debounce="100"
+          animated></ion-searchbar>
 
-        </form>
+          <ion-button slot="end" fill="clear" (click)="goToChats()">
+            <ion-icon name="chatbubble-ellipses" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-toolbar>
+
+
+          <ion-list lines="none">
+            <ion-item
+            *ngFor="let user of users$ |async"
+            (click)="createChat(user)"
+            >
+              <ion-label>{{user.displayName}}</ion-label>
+            </ion-item>
+          </ion-list>
+      </form>
+    </div>
+
+    <div class="chat-list" [hidden]="!showContacts">
+      <ion-toolbar>
+        <ion-button slot="start" fill="clear"
+        (click)="goToChats()">
+          <ion-icon name="arrow-back-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-toolbar>
+      <ion-list>
+        <ion-item lines="inset"
+        *ngFor="let chat of myChats$ | async"
+        (click)="goToChat(chat)"
+        >
+        <ion-avatar>
+          <img [src]="chat.chatPic ? chat.chatPic:'/assets/profileICON.png'"/>
+        </ion-avatar>
+          <p class="chat-title">
+            <span class="chat-name">{{chat?.chatName}}</span>
+            <span>{{chat.lastMessageDate}}</span>
+          </p>
+          <p class="chat-date">{{chat.lastMessage}}</p>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div class="messages" [hidden]="!showContacts">
+      <div class="messages-header" *ngIf="selectedChats$ | async as selectedChat">
+        <img [src]="selectedChat.chatPic ? selectedChat.chatPic : '/assets/profileICON.png'"/>
+        <h2>{{selectedChat.chatName}}</h2>
       </div>
     </div>
-    <div class="messages"></div>
   </div>
 </ion-content>

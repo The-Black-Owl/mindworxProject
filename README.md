@@ -32,3 +32,32 @@ changes mad today:
         ...bio update feature
 > ensure that menu works
 
+referring for the selection list
+
+<ion-list
+      inset
+      [formControl]="chatListControl">
+        <ion-item lines="inset"
+        *ngFor="let chat of myChats$ | async"
+        >
+        <ion-avatar>
+          <img [src]="chat.chatPic ? chat.chatPic:'/assets/profileICON.png'"/>
+        </ion-avatar>
+          <p class="chat-title">
+            <span class="chat-name">{{chat?.chatName}}</span>
+            <span>{{chat.lastMessageDate}}</span>
+          </p>
+          <p class="chat-date">{{chat.lastMessage}}</p>
+        </ion-item>
+      </ion-list>
+
+message list
+<div class="messages-header" *ngIf="selectedChats$ | async as selectedChat">
+        <img [src]="selectedChat.chatPic ? selectedChat.chatPic : '/assets/profileICON.png'"/>
+        <h2>{{selectedChat.chatName}}</h2>
+</div>
+
+for search
+<ion-button
+              *ngFor="let user of users$ |async"
+              (click)="createChat(user)">{{user?.displayName}}</ion-button>

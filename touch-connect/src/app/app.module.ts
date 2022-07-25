@@ -15,7 +15,7 @@ import {provideFirestore,getFirestore}from '@angular/fire/firestore';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import {getStorage,provideStorage} from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
-
+import {Ng2SearchPipeModule} from 'ng2-search-filter'
 
 @NgModule({
   declarations: [AppComponent, LoadingComponent],
@@ -27,6 +27,7 @@ import { environment } from 'src/environments/environment';
      provideAuth(() => getAuth()),
      provideFirestore(()=>getFirestore()),
      provideStorage(()=>getStorage()),
+     Ng2SearchPipeModule
     ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

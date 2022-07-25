@@ -8,6 +8,9 @@ export const environment = {
   WeathAPI:'03351a95c78af48572f62f0a34b00e3b',
   GeoURL:'http://api.openweathermap.org/geo/1.0/',
 
+  TimeURL:'http://api.timezonedb.com/v2.1/',
+  TimeAPI:'SGPYMGN0FYYZ',
+
 //Access to the firebase  database
   firebase:{
     apiKey: "AIzaSyBPv_IyBZn3SsGHleZXXYEnyn-IgdNKnf0",

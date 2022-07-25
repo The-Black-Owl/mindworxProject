@@ -42,6 +42,28 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-item lines="none">
+        <span>Zone Name: </span>
+        <span slot="end">{{zoneName}} ({{abbreviation}})</span>
+      </ion-item>
+      <ion-item lines="none">
+        <span>Time and Date: </span>
+        <span slot="end">{{timeFormat}}</span>
+      </ion-item>
+      <ion-item lines="none">
+        <span>Region: </span>
+        <span slot="end">{{regionName}}</span>
+      </ion-item>
+      <ion-item lines="none">
+        <span>Country: </span>
+        <span slot="end">{{countryName}}</span>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
 </div>
 <div *ngIf="loadingInfo">
   <body>

@@ -4,19 +4,35 @@
 }
 
 .chat-list{
-  width:40%;
-  margin:16px;
+  width:50%;
+  margin:10px;
   background: #56c24a;
   border-radius: 16px;
 }
 
 .messages{
-  width:60%;
-  margin:16px;
+  width:50%;
+  margin:10px;
   background: #7f3dc2;
   border-radius: 16px;
 
 }
 .search-input{
-  margin: 24px;
+  width:1000%;
+  margin:10px;
+  background: #9cb099;
+  border-radius: 10px;
 }
+
+.chat-title{
+  display:flex !important;
+  justify-content: space-between;
+}
+.chat-name{
+  font-weight: 500;
+}
+.chat-date{
+  font: size 0.7em;
+  color: rgba(0,0,0,0.7);
+}
+

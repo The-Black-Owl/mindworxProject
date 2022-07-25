@@ -6,6 +6,9 @@ const WeathAPI=environment.WeathAPI;
 const WeathURL=environment.WeathURL;
 const GeoURL=environment.GeoURL;
 
+const TimeURL=environment.TimeURL;
+const TimeAPI=environment.TimeAPI;
+
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.page.html',
@@ -21,12 +24,18 @@ export class WeatherPage implements OnInit {
   weatherIcontype:any
   weatherIcon:any
   cityName="" // city name
-  
+
   todayDate= new Date()//gets todays date
 
+  abbreviation:any
+  countryName:any
+  timeFormat:any
+  regionName:any
+  zoneName:any
+
   loadingInfo=true
-  constructor(public httpClient:HttpClient) { 
-    
+  constructor(public httpClient:HttpClient) {
+
   }
 
   ngOnInit() {
@@ -39,7 +48,16 @@ export class WeatherPage implements OnInit {
       this.latitude=results[0]['lat']
       this.longitud=results[0]['lon']
 
-      
+      this.httpClient.get(`${TimeURL}/get-time-zone?key=SGPYMGN0FYYZ&format=json&by=position&lat=${this.latitude}&lng=${this.longitud}
+    `).subscribe(results=>{
+      console.log(results)
+      this.abbreviation=results['abbreviation']
+      this.countryName=results['countryName']
+      this.timeFormat=results['formatted']
+      this.zoneName=results['zoneName']
+      this.regionName=results['regionName']
+      console.log(this.abbreviation,this.countryName,this.timeFormat,this.zoneName,this.regionName)});
+
     //gets the weather of that location, converts the weather into celcius
     this.httpClient.get(`${WeathURL}/weather?lat=${this.latitude}&lon=${this.longitud}&appid=${WeathAPI}&units=metric`).subscribe(results=>{
       console.log(results)

@@ -8,6 +8,7 @@ import { ChatPageRoutingModule } from './chat-routing.module';
 
 import { ChatPage } from './chat.page';
 import {NgSelectModule} from '@ng-select/ng-select';
+import {Ng2SearchPipeModule} from 'ng2-search-filter'
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import {NgSelectModule} from '@ng-select/ng-select';
     ChatPageRoutingModule,
     ReactiveFormsModule,
     NgSelectModule,
+    Ng2SearchPipeModule
   ],
   declarations: [ChatPage]
 })

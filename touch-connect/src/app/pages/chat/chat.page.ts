@@ -5,7 +5,9 @@ import {switchMap,startWith,tap,map} from 'rxjs/operators';
 import {FormControl } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
 import { ProfileUser } from 'src/app/models/user';
+import { Chat } from 'src/app/models/chat';
 import { ChatserviceService } from 'src/app/services/chatservice.service';
+
 
 
 
@@ -17,8 +19,12 @@ import { ChatserviceService } from 'src/app/services/chatservice.service';
 export class ChatPage implements OnInit {
   @ViewChild(IonContent) content:IonContent;
 
+  showContacts=false;
+  showMessages=true;
+
   user$=this.usersService.currentUserProfile$;
   searchControl=new FormControl('');
+  chatListControl=new FormControl();
 
   users$=combineLatest([this.usersService.allUsers$,this.user$,this.searchControl.valueChanges.pipe(
     startWith(''))]).pipe(
@@ -29,10 +35,31 @@ export class ChatPage implements OnInit {
   constructor(private usersService:UsersService,
     private chatService:ChatserviceService) { }
 
-  ngOnInit() {
+  ngOnInit():void {
+  }
+
+  myChats$ =  this.chatService.myChats$;
+
+selectedChats$=combineLatest([
+    this.chatListControl.valueChanges,
+    this.myChats$,
+  ]).pipe(
+    map(([value,chats])=> chats.find(c=> c.id=== value[0]))
+  );
+
+  goToChats(){
+    this.showContacts=!this.showContacts;
+  }
+
+  goToChat(chats: Chat){
+    this.chatListControl.setValue(chats.id);
+    console.log(this.chatListControl);
+    console.log(this.selectedChats$);
   }
 
   createChat(otherUser:ProfileUser){
     this.chatService.createChat(otherUser).subscribe();
+    this.showContacts=!this.showContacts;
+    ;
   }
 }
