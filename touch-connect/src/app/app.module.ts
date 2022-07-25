@@ -15,7 +15,7 @@ import {provideFirestore,getFirestore}from '@angular/fire/firestore';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import {getStorage,provideStorage} from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
-import {AutoCompleteModule} from 'ionic4-auto-complete';
+
 
 @NgModule({
   declarations: [AppComponent, LoadingComponent],
@@ -27,7 +27,6 @@ import {AutoCompleteModule} from 'ionic4-auto-complete';
      provideAuth(() => getAuth()),
      provideFirestore(()=>getFirestore()),
      provideStorage(()=>getStorage()),
-     AutoCompleteModule,
     ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
